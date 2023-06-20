@@ -135,27 +135,4 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-
-    /*  private fun markerIcon(icon: Int): BitmapDescriptor {
-          // Create a Drawable object from the desired drawable icon
-          val drawableIcon: Drawable? =
-              ContextCompat.getDrawable(requireContext(), icon)
-          // Convert the Drawable to a Bitmap
-          val bitmapIcon: Bitmap = drawableIcon?.let {
-              val canvas = Canvas()
-              val bitmap =
-                  Bitmap.createBitmap(it.intrinsicWidth, it.intrinsicHeight, Bitmap.Config.ARGB_8888)
-              canvas.setBitmap(bitmap)
-              it.setBounds(0, 0, it.intrinsicWidth, it.intrinsicHeight)
-              it.draw(canvas)
-              bitmap
-          } ?: Bitmap.createBitmap(
-              1,
-              1,
-              Bitmap.Config.ARGB_8888
-          )
-          // val markerIcon = BitmapDescriptorFactory.fromBitmap(bitmapIcon)
-          return BitmapDescriptorFactory.fromBitmap(bitmapIcon)
-      }*/
-
 }
