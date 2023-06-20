@@ -16,6 +16,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.googlemapdemo.databinding.FragmentMapBinding
 import com.example.googlemapdemo.utils.LocationPermissionService
+import com.example.googlemapdemo.utils.MapMarkerIcon
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
@@ -74,9 +75,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         //locationList.clear()
 
-        val markerIcon = markerIcon(R.drawable.location)
-        val markerIconOne = markerIcon(R.drawable.marker_icon)
-        val markerIconTwo = markerIcon(R.drawable.marker_icon_one)
+        val markerIcon = MapMarkerIcon(requireContext()).markerIcon(R.drawable.location)
+        val markerIconOne = MapMarkerIcon(requireContext()).markerIcon(R.drawable.marker_icon)
+        val markerIconTwo = MapMarkerIcon(requireContext()).markerIcon(R.drawable.marker_icon_one)
 
         markerIconList.add(markerIcon)
         markerIconList.add(markerIconOne)
@@ -135,26 +136,26 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     }
 
 
-    private fun markerIcon(icon: Int): BitmapDescriptor {
-        // Create a Drawable object from the desired drawable icon
-        val drawableIcon: Drawable? =
-            ContextCompat.getDrawable(requireContext(), icon)
-        // Convert the Drawable to a Bitmap
-        val bitmapIcon: Bitmap = drawableIcon?.let {
-            val canvas = Canvas()
-            val bitmap =
-                Bitmap.createBitmap(it.intrinsicWidth, it.intrinsicHeight, Bitmap.Config.ARGB_8888)
-            canvas.setBitmap(bitmap)
-            it.setBounds(0, 0, it.intrinsicWidth, it.intrinsicHeight)
-            it.draw(canvas)
-            bitmap
-        } ?: Bitmap.createBitmap(
-            1,
-            1,
-            Bitmap.Config.ARGB_8888
-        )
-        // val markerIcon = BitmapDescriptorFactory.fromBitmap(bitmapIcon)
-        return BitmapDescriptorFactory.fromBitmap(bitmapIcon)
-    }
+    /*  private fun markerIcon(icon: Int): BitmapDescriptor {
+          // Create a Drawable object from the desired drawable icon
+          val drawableIcon: Drawable? =
+              ContextCompat.getDrawable(requireContext(), icon)
+          // Convert the Drawable to a Bitmap
+          val bitmapIcon: Bitmap = drawableIcon?.let {
+              val canvas = Canvas()
+              val bitmap =
+                  Bitmap.createBitmap(it.intrinsicWidth, it.intrinsicHeight, Bitmap.Config.ARGB_8888)
+              canvas.setBitmap(bitmap)
+              it.setBounds(0, 0, it.intrinsicWidth, it.intrinsicHeight)
+              it.draw(canvas)
+              bitmap
+          } ?: Bitmap.createBitmap(
+              1,
+              1,
+              Bitmap.Config.ARGB_8888
+          )
+          // val markerIcon = BitmapDescriptorFactory.fromBitmap(bitmapIcon)
+          return BitmapDescriptorFactory.fromBitmap(bitmapIcon)
+      }*/
 
 }
