@@ -35,8 +35,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         locationList = ArrayList()
 
         val futurePark = LatLng(23.813334, 90.4242)
-        val nikunjo = LatLng(23.8319, 90.4178)
-        val laMerridian = LatLng(3.1357, 101.6866)
+        val nikunjo = LatLng( 23.797911, 90.414391)
+        val laMerridian = LatLng( 23.767811, 90.413391)
 
 
 
@@ -64,7 +64,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             Log.e("TAG", "l " + l + "" + locationList[l])
 
             mMap.addMarker(MarkerOptions().position(locationList[l]).title("Marker"))
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locationList[l], 15f))
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locationList[l], 10f))
         }
 
     }
