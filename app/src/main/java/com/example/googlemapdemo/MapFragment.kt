@@ -37,6 +37,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var locationList: ArrayList<LatLng>
     private lateinit var markerIconList: ArrayList<BitmapDescriptor>
+    private lateinit var mapMarkerIcon: MapMarkerIcon
 
     private val launcher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { result ->
@@ -57,8 +58,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
 
 
+        //initialization----------------------------------
         locationList = ArrayList()
         markerIconList = ArrayList()
+        mapMarkerIcon = MapMarkerIcon(requireContext())
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
 
@@ -73,21 +76,19 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        //locationList.clear()
+        //adding marker icon to a list--------------------------------
+        markerIconList.add(mapMarkerIcon.markerIcon(R.drawable.location))
+        markerIconList.add(mapMarkerIcon.markerIcon(R.drawable.marker_icon))
+        markerIconList.add(mapMarkerIcon.markerIcon(R.drawable.marker_icon_one))
+        markerIconList.add(mapMarkerIcon.markerIcon(R.drawable.marker_icon))
+        markerIconList.add(mapMarkerIcon.markerIcon(R.drawable.marker_icon_one))
+        markerIconList.add(mapMarkerIcon.markerIcon(R.drawable.marker_icon))
 
-        val markerIcon = MapMarkerIcon(requireContext()).markerIcon(R.drawable.location)
-        val markerIconOne = MapMarkerIcon(requireContext()).markerIcon(R.drawable.marker_icon)
-        val markerIconTwo = MapMarkerIcon(requireContext()).markerIcon(R.drawable.marker_icon_one)
 
-        markerIconList.add(markerIcon)
-        markerIconList.add(markerIconOne)
-        markerIconList.add(markerIconTwo)
-        markerIconList.add(markerIconOne)
-        markerIconList.add(markerIconTwo)
-        markerIconList.add(markerIconOne)
 
-        googleMap.clear()
-        googleMap.uiSettings.isZoomControlsEnabled = true
+
+        /*googleMap.clear()
+        googleMap.uiSettings.isZoomControlsEnabled = true*/
 
         if (LocationPermissionService.isLocationPermissionGranted(requireContext())) {
             if (ActivityCompat.checkSelfPermission(
